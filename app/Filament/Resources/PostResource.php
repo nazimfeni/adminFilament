@@ -2,24 +2,24 @@
 
 namespace App\Filament\Resources;
 
-use App\Models\Post;
-use Filament\Tables;
+use App\Filament\Resources\PostResource\Pages;
 use App\Models\Category;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Filament\Resources\Resource;
-use Filament\Forms\Components\Select;
+use App\Models\Post;
 use Filament\Forms\Components\Checkbox;
-use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\ColorPicker;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Columns\CheckboxColumn;
 use Filament\Tables\Columns\ColorColumn;
 use Filament\Tables\Columns\ImageColumn;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\ColorPicker;
-use Filament\Tables\Columns\CheckboxColumn;
-use Filament\Forms\Components\MarkdownEditor;
-use App\Filament\Resources\PostResource\Pages;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
 
 class PostResource extends Resource
 {
@@ -50,6 +50,7 @@ class PostResource extends Resource
             ->columns([
                 TextColumn::make('title'),
                 TextColumn::make('slug'),
+                TextColumn::make('category.name'),
                 ColorColumn::make('color'),
                 ImageColumn::make('thumbnail'),
                 TextColumn::make('tags'),
