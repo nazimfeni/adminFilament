@@ -22,4 +22,8 @@ class Post extends Model
         'tags' => 'array', // Automatically handles JSON encoding/decoding
     ];
 
+    public function category(){
+        return $this->belongsTo(Category::class);
+    }
+
 }
