@@ -8,6 +8,7 @@ use App\Models\Category;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
+use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Checkbox;
@@ -42,13 +43,18 @@ class PostResource extends Resource
                     ->options(Category::all()->pluck('name', 'id')),
                 MarkdownEditor::make('content')->required()->columnSpanFull(),
                 ])->columnSpan(1)->columns(2),
+                Group::make()->schema([
+                    Section::make('Image')->collapsible()
+                    ->schema([
+                        FileUpload::make('thumbnail')->disk('public')->directory('thumbnails'),
+                ]),
                 Section::make('Meta')->schema([
-                    FileUpload::make('thumbnail')->disk('public')->directory('thumbnails'),
-                TagsInput::make('tags')->required(),
+                    TagsInput::make('tags')->required(),
                 Checkbox::make('published')->required(),
-                ])->columnSpan(1),
+            ])
+            ])
 
-            ])->columns(2);
+            ])->columns(3);
     }
 
     public static function table(Table $table): Table
